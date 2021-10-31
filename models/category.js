@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 const CategorySchema = new Schema({
@@ -10,6 +11,6 @@ CategorySchema.virtual('url').get(function () {
   return '/category/' + this._id;
 });
 
-const Category = mongoose.Model('category', CategorySchema);
+const Category = mongoose.model('category', CategorySchema);
 
 module.exports = Category;
