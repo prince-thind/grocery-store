@@ -1,3 +1,7 @@
+exports.index=function(req,res,next){
+  res.send('index');
+}
+
 exports.category_list = function (req, res, next) {
   res.send('NOt Impleneted: category list');
 };

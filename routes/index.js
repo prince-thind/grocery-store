@@ -5,9 +5,7 @@ const categoryController = require('../controllers/categoryController');
 const itemController = require('../controllers/itemController');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Foo Groceries' });
-});
+router.get('/',categoryController.index);
 
 //about page
 router.get('/about', function (req, res, next) {
