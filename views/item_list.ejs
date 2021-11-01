@@ -1,0 +1,11 @@
+<%-include('header')%>
+    <p>Item List:</p>
+    <ul>
+        <% for (const item of items) {%>
+            <li>
+             <a href="<%=item.url%>"><%=item.name%></a> , <%=item.description%> <%=item.inStock %> 
+            </li>
+            <% } %>
+
+    </ul>
+    <%-include('footer')%>

@@ -1,5 +1,11 @@
+const Item = require('../models/item');
+
+
 exports.item_list = function (req, res, next) {
-  res.send('NOt Impleneted: item list');
+  Item.find({}).exec(function(err,items){
+    if(err) return next(err);
+    res.render('item_list',{title:'Items List', items})
+  })
 };
 
 exports.item_detail = function (req, res, next) {
