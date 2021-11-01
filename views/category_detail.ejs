@@ -1,0 +1,14 @@
+<%-include('header')%>
+    <div class="category-name">
+        Category: <%=category.name%>
+        description: <%=category.description%>
+    </div>
+    <p>here's a list of items this category has:</p>
+    <ul>
+        <% for (const item of items) {%>
+            <li>
+             <a href="<%=item.url%>"><%=item.name%></a>   , <%=item.description%>
+            </li>
+            <% } %>
+    </ul>
+<%-include('footer')%>

@@ -40,32 +40,42 @@ exports.category_list = function (req, res, next) {
     },
     function (err, results) {
       if (err) return next(err);
-      // const categories = results.categories.map((cat) => ({
-      //   ...cat,
-      //   count: 0,
-      // }));
-  
+
       for (const category of results.categories) {
-        if(category.count===undefined){
-          category.count=0;
+        if (category.count === undefined) {
+          category.count = 0;
         }
         for (const item of results.items) {
-          if(item.category==null) continue;
+          if (item.category == null) continue;
           if (item.category.toString() === category._id.toString()) {
             category.count++;
           }
         }
       }
-      res.render('category_list',{
-        title:'Category List',
-        categories:results.categories
-      })
+      res.render('category_list', {
+        title: 'Category List',
+        categories: results.categories,
+      });
     }
   );
 };
 
 exports.category_detail = function (req, res, next) {
-  res.send('NOt Impleneted: category details');
+  const ID = req.params.id;
+  async.parallel(
+    {
+      category: (callback) => Category.findById(ID,callback),
+      items: (callback) => Item.find({ category: ID }).exec(callback),
+    },
+    function (err, results) {
+      if (err) return next(err);
+      res.render('category_detail', {
+        title: 'category detail',
+        category: results.category,
+        items: results.items,
+      });
+    }
+  );
 };
 
 exports.category_create_get = function (req, res, next) {
