@@ -1,8 +1,13 @@
 <%-include('header')%>
-<h2>Welcome to Foo Groceries </h2>
-<p>Here are some statistics about grocery Store</p>
-<ul>
-    <li>Total Categories: null</li>
-    <li>Total Items: null</li>
-</ul>
-<%-include('footer')%>
+    <h2>Welcome to Foo Groceries </h2>
+    <p>Here are some statistics about grocery Store</p>
+    <ul>
+            <li>Total Categories: <%=categoriesCount%>
+            </li>
+            <li>Total Item: <%=itemsCount%>
+            </li>
+            <li>Items Available: <%=itemsAvailableCount%>
+            </li>
+
+    </ul>
+    <%-include('footer')%>

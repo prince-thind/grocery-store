@@ -1,6 +1,30 @@
-exports.index=function(req,res,next){
-  res.send('index');
-}
+const Category = require('../models/category');
+const Item = require('../models/item');
+const async = require('async');
+
+exports.index = function (req, res, next) {
+  async.parallel(
+    {
+      categories: function (callback) {
+        Category.countDocuments({}, callback);
+      },
+      items: function (callback) {
+        Item.countDocuments({}, callback);
+      },
+      itemsAvailable:function(callback){
+        Item.countDocuments({inStock:true},callback);
+      }
+    },
+    function (err, results) {
+      const categoriesCount=results.categories;
+      const itemsCount=results.items;
+      const itemsAvailableCount=results.itemsAvailable;
+
+      res.render('index',{title:"Foo Groceries", categoriesCount,itemsCount,itemsAvailableCount})
+
+    }
+  );
+};
 
 exports.category_list = function (req, res, next) {
   res.send('NOt Impleneted: category list');
