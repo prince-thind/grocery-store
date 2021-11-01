@@ -1,0 +1,24 @@
+<%-include('header')%>
+    <% if(locals.item==null){ item={name:'',description:'',price:'',checked:false} } %>
+
+        <form method="post">
+            <input type="text" value="<%=item.name%>" name="item_name" minlength="2">
+            <input type="text" value="<%=item.description%>" name="item_description">
+            <input type="number" value="<%=item.price %>" name="item_price">
+            <input type="radio" value="true" name="item_instock" <%=item.checked?'checked':'' %> >
+            <input type="radio" value="false" name="item_instock" <%=item.checked?'':'checked' %>>
+            <select name="item_category">
+                <% for(const category of categories){ %>
+                    <option value="<%=category.id %>"><%=category.name %> </option>
+                    <% } %>
+            </select>
+            <button>Submit</button>
+        </form>
+        <ul class="errors">
+            <% for(const err of errors) {%>
+                <li>
+                    <%=err.msg %>
+                </li>
+                <% } %>
+        </ul>
+        <%-include('footer')%>
