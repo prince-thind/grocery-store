@@ -1,0 +1,15 @@
+<%-include('header')%>
+    <form method="post">
+        <input type="text" value="<%=name%>" name="category_name" minlength="2">
+        <input type="text" value="<%=description%>" name="category_description">
+        <button>Submit</button>
+    </form>
+    <ul class="errors">
+        <% for(const err of errors) {%>
+            <li>
+                <%=err.msg %>
+            </li>
+            <% } %>
+    </ul>
+
+    <%-include('footer')%>

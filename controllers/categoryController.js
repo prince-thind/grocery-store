@@ -1,6 +1,7 @@
 const Category = require('../models/category');
 const Item = require('../models/item');
 const async = require('async');
+const { body, validationResult } = require('express-validator');
 
 exports.index = function (req, res, next) {
   async.parallel(
@@ -64,7 +65,7 @@ exports.category_detail = function (req, res, next) {
   const ID = req.params.id;
   async.parallel(
     {
-      category: (callback) => Category.findById(ID,callback),
+      category: (callback) => Category.findById(ID, callback),
       items: (callback) => Item.find({ category: ID }).exec(callback),
     },
     function (err, results) {
@@ -79,12 +80,52 @@ exports.category_detail = function (req, res, next) {
 };
 
 exports.category_create_get = function (req, res, next) {
-  res.send('NOt Impleneted: category create get');
+  res.render('category_form', {
+    title: 'create category',
+    name: '',
+    description: '',
+    errors: [],
+  });
 };
 
-exports.category_create_post = function (req, res, next) {
-  res.send('NOt Impleneted: category create post');
-};
+exports.category_create_post = [
+  body('category_name')
+    .trim()
+    .isLength({ min: 2 })
+    .escape()
+    .withMessage('Category name must contain minimum 2 Characters')
+    .isAlphanumeric()
+    .withMessage('Category name cannot contain special characters'),
+  body('category_description')
+    .trim()
+    .isLength({ max: 150 })
+    .escape()
+    .withMessage('Category Description must contain at max 150 Character')
+    .isAlphanumeric()
+    .withMessage('Category Description cannot contain special characters'),
+
+  function (req, res, next) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.render('category_form', {
+        errors: errors.array(),
+        title: 'Create Category',
+        name: req.body.category_name,
+        description:req.body.category_description,
+      });
+      return;
+    }
+
+    const category = new Category({
+      name: req.body.category_name,
+      description: req.body.category_description
+    });
+    category.save((err) => {
+      if (err) return next(err);
+      res.redirect('/categories');
+    });
+  },
+];
 
 exports.category_update_get = function (req, res, next) {
   res.send('NOt Impleneted: category update_get');
