@@ -9,7 +9,16 @@ exports.item_list = function (req, res, next) {
 };
 
 exports.item_detail = function (req, res, next) {
-    res.send('NOt Impleneted: item details');
+  const ID=req.params.id;
+    Item.findById(ID).populate('category').exec(function(err,item){
+      if(err) return next(err);
+      if(item==null){
+        const error=new Error('Item not found!');
+        error.status=404;
+        return next(error);
+      }
+      res.render('item_detail',{title:'Item Detail',item})
+    })
   };
 
 exports.item_create_get = function (req, res, next) {
