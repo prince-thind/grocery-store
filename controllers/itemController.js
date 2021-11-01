@@ -64,7 +64,17 @@ exports.item_create_post = [
     Category.find().exec(function (err, categories) {
       if (err) return next(err);
       if (!errors.isEmpty()) {
-        res.render('item_form', { errors: errors.array(),categories,item:{name:req.body.item_name,description:req.body.item_description,price:req.body.item_price,instock:req.body.item_instock,category:req.body.item_category} });
+        res.render('item_form', {
+          errors: errors.array(),
+          categories,
+          item: {
+            name: req.body.item_name,
+            description: req.body.item_description,
+            price: req.body.item_price,
+            instock: req.body.item_instock,
+            category: req.body.item_category,
+          },
+        });
         return;
       }
       const item = new Item({
@@ -89,8 +99,15 @@ exports.item_update_post = function (req, res, next) {
   res.send('NOt Impleneted: item update_post');
 };
 exports.item_delete_get = function (req, res, next) {
-  res.send('NOt Impleneted: item delete_get');
+  const ID = req.params.id;
+  Item.findById(ID).exec(function (err, item) {
+    res.render('item_delete', { title: 'delete item', item });
+  });
 };
 exports.item_delete_post = function (req, res, next) {
-  res.send('NOt Impleneted: item delete_post');
+  const ID = req.body.itemid;
+  Item.findByIdAndDelete(ID).exec(function (err, item) {
+    if (err) return next(err);
+    res.redirect('/items');
+  });
 };
