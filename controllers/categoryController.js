@@ -11,23 +11,57 @@ exports.index = function (req, res, next) {
       items: function (callback) {
         Item.countDocuments({}, callback);
       },
-      itemsAvailable:function(callback){
-        Item.countDocuments({inStock:true},callback);
-      }
+      itemsAvailable: function (callback) {
+        Item.countDocuments({ inStock: true }, callback);
+      },
     },
     function (err, results) {
-      const categoriesCount=results.categories;
-      const itemsCount=results.items;
-      const itemsAvailableCount=results.itemsAvailable;
+      if (err) return next(err);
 
-      res.render('index',{title:"Foo Groceries", categoriesCount,itemsCount,itemsAvailableCount})
+      const categoriesCount = results.categories;
+      const itemsCount = results.items;
+      const itemsAvailableCount = results.itemsAvailable;
 
+      res.render('index', {
+        title: 'Foo Groceries',
+        categoriesCount,
+        itemsCount,
+        itemsAvailableCount,
+      });
     }
   );
 };
 
 exports.category_list = function (req, res, next) {
-  res.send('NOt Impleneted: category list');
+  async.parallel(
+    {
+      categories: (callback) => Category.find().exec(callback),
+      items: (callback) => Item.find().exec(callback),
+    },
+    function (err, results) {
+      if (err) return next(err);
+      // const categories = results.categories.map((cat) => ({
+      //   ...cat,
+      //   count: 0,
+      // }));
+  
+      for (const category of results.categories) {
+        if(category.count===undefined){
+          category.count=0;
+        }
+        for (const item of results.items) {
+          if(item.category==null) continue;
+          if (item.category.toString() === category._id.toString()) {
+            category.count++;
+          }
+        }
+      }
+      res.render('category_list',{
+        title:'Category List',
+        categories:results.categories
+      })
+    }
+  );
 };
 
 exports.category_detail = function (req, res, next) {

@@ -1,0 +1,11 @@
+<%-include('header')%>
+    <p>Category List:</p>
+    <ul>
+        <% for (const category of categories) {%>
+            <li>
+                <%=category.name%>,  <%=category.count%>, <%=category.description%>
+            </li>
+            <% } %>
+
+    </ul>
+    <%-include('footer')%>
