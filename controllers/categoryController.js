@@ -185,8 +185,51 @@ exports.category_update_post = [
 ];
 
 exports.category_delete_get = function (req, res, next) {
-  res.send('NOt Impleneted: category delete_get');
+  const ID = req.params.id;
+  async.parallel(
+    {
+      category: (callback) => Category.findById(ID, callback),
+      items: (callback) => Item.find({ category: ID }).exec(callback),
+    },
+    function (err, results) {
+      if (err) return next(err);
+      if (results.items.length != 0) {
+        res.render('category_delete', {
+          title: 'delete Category',
+          items: results.items,
+          category: results.category,
+        });
+      } else {
+        res.render('category_delete', {
+          title: 'delete Category',
+          category: results.category,
+        });
+      }
+    }
+  );
 };
 exports.category_delete_post = function (req, res, next) {
-  res.send('NOt Impleneted: category delete_post');
+  const ID = req.body.categoryid;
+  async.parallel(
+    {
+      category: (callback) => Category.findById(ID, callback),
+      items: (callback) => Item.find({ category: ID }).exec(callback),
+    },
+    function (err, results) {
+      if (err) return next(err);
+      if (results.items.length != 0) {
+        res.render('category_delete', {
+          title: 'delete Category',
+          items: results.items,
+          category: results.category,
+        });
+      } else {
+        Category.findByIdAndDelete(ID,function(err){
+          if(err) return next(err);
+          res.redirect('/categories');
+        })
+        
+      }
+    }
+  );
 };
