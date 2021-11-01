@@ -111,14 +111,14 @@ exports.category_create_post = [
         errors: errors.array(),
         title: 'Create Category',
         name: req.body.category_name,
-        description:req.body.category_description,
+        description: req.body.category_description,
       });
       return;
     }
 
     const category = new Category({
       name: req.body.category_name,
-      description: req.body.category_description
+      description: req.body.category_description,
     });
     category.save((err) => {
       if (err) return next(err);
@@ -128,11 +128,62 @@ exports.category_create_post = [
 ];
 
 exports.category_update_get = function (req, res, next) {
-  res.send('NOt Impleneted: category update_get');
+  const ID = req.params.id;
+  Category.findById(ID).exec(function (err, category) {
+    if (err) return next(err);
+    if (category == null) {
+      const error = new Error('category not found!');
+      error.status = 404;
+      return next(error);
+    }
+    res.render('category_form', {
+      title: 'Update Form',
+      name: category.name,
+      description: category.description,
+      errors: [],
+    });
+  });
 };
-exports.category_update_post = function (req, res, next) {
-  res.send('NOt Impleneted: category update_post');
-};
+exports.category_update_post = [
+  body('category_name')
+    .trim()
+    .isLength({ min: 2 })
+    .escape()
+    .withMessage('Category name must contain minimum 2 Characters')
+    .isAlphanumeric()
+    .withMessage('Category name cannot contain special characters'),
+  body('category_description')
+    .trim()
+    .isLength({ max: 150 })
+    .escape()
+    .withMessage('Category Description must contain at max 150 Character')
+    .isAlphanumeric()
+    .withMessage('Category Description cannot contain special characters'),
+
+  function (req, res, next) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.render('category_form', {
+        errors: errors.array(),
+        title: 'Create Category',
+        name: req.body.category_name,
+        description: req.body.category_description,
+      });
+      return;
+    }
+    const ID = req.params.id;
+    const category = new Category({
+      name: req.body.category_name,
+      description: req.body.category_description,
+      _id: req.params.id,
+    });
+    Category.findByIdAndUpdate(ID, category, function (err, updatedCategory) {
+      if (err) return next(err);
+      res.redirect(updatedCategory.url);
+    });
+  },
+];
+
 exports.category_delete_get = function (req, res, next) {
   res.send('NOt Impleneted: category delete_get');
 };
