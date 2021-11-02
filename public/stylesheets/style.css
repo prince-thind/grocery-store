@@ -31,6 +31,13 @@
   margin:1rem 0;
   color:hsl(65, 85%, 90%);
 }
+.display-list{
+  margin:1rem;
+}
+.display-list ul{
+  margin:0.5rem 1rem;
+}
+
 footer {
   background-color: black;
   color: white;

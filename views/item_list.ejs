@@ -1,9 +1,23 @@
 <%-include('header')%>
+
     <p>Item List:</p>
-    <ul>
+    <ul class="display-list">
         <% for (const item of items) {%>
             <li>
-             <a href="<%=item.url%>"><%=item.name%></a> , <%=item.description%> <%=item.inStock %> 
+                <a href="<%=item.url%>">
+                    <%=item.name%>
+                </a>
+                <ul>
+                    <li>Description: <%=item.description %>
+                    </li>
+                    <li>Price: <%=item.price %>
+                    </li>
+                    <li>inStock: <%=item.inStock %>
+                    </li>
+                        <li>Category: <a href="<%=item.category?.url %> "><%=item.category?.name %></a> 
+
+                        </li>
+                </ul>
             </li>
             <% } %>
 

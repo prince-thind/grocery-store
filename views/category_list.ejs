@@ -1,9 +1,14 @@
 <%-include('header')%>
-    <p>Category List:</p>
-    <ul>
+    <ul class="display-list">
         <% for (const category of categories) {%>
             <li>
-             <a href="<%=category.url%>"><%=category.name%></a>   ,  <%=category.count%>, <%=category.description%>
+                <a href="<%=category.url%>">
+                    <%=category.name%>
+                </a>
+                <ul>
+                    <li>Description: <%=category.description %> </li>
+                    <li>Count: <%=category.count %> </li>
+                </ul>
             </li>
             <% } %>
 

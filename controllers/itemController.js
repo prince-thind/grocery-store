@@ -4,7 +4,7 @@ const async=require('async')
 const { body, validationResult } = require('express-validator');
 
 exports.item_list = function (req, res, next) {
-  Item.find({}).exec(function (err, items) {
+  Item.find({}).populate('category').exec(function (err, items) {
     if (err) return next(err);
     res.render('item_list', { title: 'Items List', items });
   });
