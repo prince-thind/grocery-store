@@ -98,7 +98,7 @@ exports.item_update_get = function (req, res, next) {
   const ID = req.params.id;
   async.parallel(
     {
-      item: (callback) => Item.findById(ID, callback),
+      item: (callback) => Item.findById(ID).populate('category').exec(callback),
       categories: (callback) => Category.find().exec(callback),
     },
     function (err, results) {

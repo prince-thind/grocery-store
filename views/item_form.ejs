@@ -19,7 +19,7 @@
             </div>
             <select name="item_category" class="form-select">
                 <% for(const category of categories){ %>
-                    <option value="<%=category.id %>">
+                    <option value="<%=category.id %>" <%= item.category?.id==category.id?'selected':'' %>  >
                         <%=category.name %>
                     </option>
                     <% } %>
