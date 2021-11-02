@@ -1,0 +1,38 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+  font-family: Verdana, sans-serif;
+  color: white;
+  background-color: hsl(0, 0%, 9%);
+}
+main {
+  display: flex;
+  flex: 1;
+}
+ul {
+  list-style: none;
+}
+a {
+  color: hsl(240, 50%, 60%);
+  text-decoration: none;
+}
+a:visited {
+  color: hsl(240, 50%, 60%);
+}
+.dynamic {
+  flex: 1;
+  box-sizing: border-box;
+  padding:0 2rem;
+  text-align: justify;
+}
+.heading{
+  padding:0.5rem;
+  font-size: 2rem;
+  color:hsl(0, 50%, 75%);
+}
