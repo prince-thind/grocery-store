@@ -15,9 +15,7 @@ main {
   display: flex;
   flex: 1;
 }
-ul {
-  list-style: none;
-}
+
 a {
   color: hsl(240, 50%, 60%);
   text-decoration: none;
@@ -28,11 +26,14 @@ a:visited {
 .dynamic {
   flex: 1;
   box-sizing: border-box;
-  padding:0 2rem;
+  padding:0 2rem 1rem 2rem;
   text-align: justify;
 }
 .heading{
   padding:0.5rem;
   font-size: 2rem;
   color:hsl(0, 50%, 75%);
+}
+p{
+  margin:1rem 0;
 }

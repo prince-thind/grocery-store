@@ -8,6 +8,8 @@
   border-bottom: 1px solid gray;
   text-align: left;
   font-size: 1.2rem;
+  list-style: none;
+
 }
 .side-list  a:hover {
   background:radial-gradient(hsl(60, 75%, 30%),hsl(60, 75%, 10%));
@@ -19,9 +21,20 @@
   color: hsl(240, 50%, 80%);
 
 }
-
+.index-heading{
+  margin:1rem 0;
+}
+.index-list{
+  margin-left: 3rem;
+}
+.index-list>li{
+  margin:1rem 0;
+  color:hsl(65, 85%, 90%);
+}
 footer {
   background-color: black;
   color: white;
   padding: 0.5rem;
+  border-top:3px solid gray;
+
 }
