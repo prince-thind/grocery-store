@@ -2,11 +2,11 @@
     <form method="post" class="form">
         <div class="form-field">
             <label for="category_name">Category Name:</label>
-            <input id="category_name" type="text" value="<%=name%>" name="category_name" minlength="2">
+            <input id="category_name" type="text" value="<%=name%>" name="category_name" minlength="2" required>
         </div>
         <div class="form-field">
             <label for="category_description">Category Description:</label>
-            <input id="category_description" type="text" value="<%=description%>" name="category_description">
+            <input id="category_description" type="text" value="<%=description%>" name="category_description" required>
         </div> 
         <button class="button submit-button">Submit</button>
     </form>
