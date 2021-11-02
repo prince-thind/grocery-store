@@ -44,19 +44,59 @@
 .delete-button {
   background-color: hsl(0, 50%, 25%);
 }
+.submit-button {
+  background-color: hsl(90, 50%, 25%);
+  margin: auto;
+  display: block;
+}
 .button {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   width: 4rem;
-  color:white;
-}
-.button:hover{
-  cursor: pointer;
-}
-.button a{
   color: white;
 }
+.button:hover {
+  cursor: pointer;
+}
+.button a {
+  color: white;
+}
+.form {
+  margin: 1rem;
+  font-size: 1.2rem;
+}
+.form-field {
+  text-align: left;
+  margin: 1rem;
+}
+.form input {
+  width: 100%;
+  display: block;
+  padding: 0.2rem;
+}
+.form label {
+  margin: 0.5rem 0;
+  display: block;
+}
+.radio-buttons{
+  margin:1rem;
+}
+.radio-buttons input,
+.radio-buttons label {
+  display: inline;
+  width: fit-content;
+}
+.form-select{
+  padding:0.2rem;
+  font-size: 1.2rem;
+  width: 100%;
+  margin-bottom: 1rem;
 
+}
+.errors {
+  text-align: left;
+  color: hsl(0, 75%, 75%);
+}
 footer {
   background-color: black;
   color: white;

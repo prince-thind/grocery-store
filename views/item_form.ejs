@@ -1,18 +1,30 @@
 <%-include('header')%>
     <% if(locals.item==null){ item={name:'',description:'',price:'',checked:false} } %>
 
-        <form method="post">
-            <input type="text" value="<%=item.name%>" name="item_name" minlength="2">
-            <input type="text" value="<%=item.description%>" name="item_description">
-            <input type="number" value="<%=item.price %>" name="item_price">
-            <input type="radio" value="true" name="item_instock" <%=item.checked?'checked':'' %> >
-            <input type="radio" value="false" name="item_instock" <%=item.checked?'':'checked' %>>
-            <select name="item_category">
+        <form method="post" class="form">
+            <label for="item_name">Name:</label>
+            <input id="item_name" type="text" value="<%=item.name%>" name="item_name" minlength="2">
+            <label for="item_description">Description</label>
+            <input id="item_description" type="text" value="<%=item.description%>" name="item_description">
+            <label for="item_price">Price:</label>
+            <input id="item_price" type="number" value="<%=item.price %>" name="item_price">
+            <div class="radio-buttons">
+                <label for="item_instock_true">True</label>
+                <input id="item_instock_true" type="radio" value="true" name="item_instock" <%=item.checked?'checked':''
+                    %>
+                >
+                <label for="item_instock_false">False</label>
+                <input id="item_instock_false" type="radio" value="false" name="item_instock"
+                    <%=item.checked?'':'checked' %>>
+            </div>
+            <select name="item_category" class="form-select">
                 <% for(const category of categories){ %>
-                    <option value="<%=category.id %>"><%=category.name %> </option>
+                    <option value="<%=category.id %>">
+                        <%=category.name %>
+                    </option>
                     <% } %>
             </select>
-            <button>Submit</button>
+            <button class="submit-button button">Submit</button>
         </form>
         <ul class="errors">
             <% for(const err of errors) {%>

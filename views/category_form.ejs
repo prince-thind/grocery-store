@@ -1,12 +1,18 @@
 <%-include('header')%>
-    <form method="post">
-        <input type="text" value="<%=name%>" name="category_name" minlength="2">
-        <input type="text" value="<%=description%>" name="category_description">
-        <button>Submit</button>
+    <form method="post" class="form">
+        <div class="form-field">
+            <label for="category_name">Category Name:</label>
+            <input id="category_name" type="text" value="<%=name%>" name="category_name" minlength="2">
+        </div>
+        <div class="form-field">
+            <label for="category_description">Category Description:</label>
+            <input id="category_description" type="text" value="<%=description%>" name="category_description">
+        </div> 
+        <button class="button submit-button">Submit</button>
     </form>
-    <ul class="errors">
+    <ul class="errors display-list">
         <% for(const err of errors) {%>
-            <li>
+            <li class="display-list-item">
                 <%=err.msg %>
             </li>
             <% } %>

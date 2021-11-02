@@ -66,6 +66,7 @@ exports.item_create_post = [
       if (err) return next(err);
       if (!errors.isEmpty()) {
         res.render('item_form', {
+          title:'Create Item',
           errors: errors.array(),
           categories,
           item: {
@@ -176,7 +177,7 @@ exports.item_update_post =[
     })
     });
   },
-];
+]; 
 
 exports.item_delete_get = function (req, res, next) {
   const ID = req.params.id;

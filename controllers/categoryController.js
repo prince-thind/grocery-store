@@ -81,7 +81,7 @@ exports.category_detail = function (req, res, next) {
 
 exports.category_create_get = function (req, res, next) {
   res.render('category_form', {
-    title: 'create category',
+    title: 'Create Category',
     name: '',
     description: '',
     errors: [],
@@ -132,12 +132,12 @@ exports.category_update_get = function (req, res, next) {
   Category.findById(ID).exec(function (err, category) {
     if (err) return next(err);
     if (category == null) {
-      const error = new Error('category not found!');
+      const error = new Error('Category not found!');
       error.status = 404;
       return next(error);
     }
     res.render('category_form', {
-      title: 'Update Form',
+      title: 'Update Category',
       name: category.name,
       description: category.description,
       errors: [],
@@ -170,7 +170,7 @@ exports.category_update_post = [
         description: req.body.category_description,
       });
       return;
-    }
+    } 
     const ID = req.params.id;
     const category = new Category({
       name: req.body.category_name,
