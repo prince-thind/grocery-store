@@ -181,7 +181,7 @@ exports.item_update_post =[
 exports.item_delete_get = function (req, res, next) {
   const ID = req.params.id;
   Item.findById(ID).exec(function (err, item) {
-    res.render('item_delete', { title: 'delete item', item });
+    res.render('item_delete', { title: 'Delete item', item });
   });
 };
 exports.item_delete_post = function (req, res, next) {

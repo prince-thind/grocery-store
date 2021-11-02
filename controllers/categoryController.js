@@ -71,7 +71,7 @@ exports.category_detail = function (req, res, next) {
     function (err, results) {
       if (err) return next(err);
       res.render('category_detail', {
-        title: 'category detail',
+        title: 'Category detail',
         category: results.category,
         items: results.items,
       });
@@ -195,13 +195,13 @@ exports.category_delete_get = function (req, res, next) {
       if (err) return next(err);
       if (results.items.length != 0) {
         res.render('category_delete', {
-          title: 'delete Category',
+          title: 'Delete Category',
           items: results.items,
           category: results.category,
         });
       } else {
         res.render('category_delete', {
-          title: 'delete Category',
+          title: 'Delete Category',
           category: results.category,
         });
       }
@@ -219,7 +219,7 @@ exports.category_delete_post = function (req, res, next) {
       if (err) return next(err);
       if (results.items.length != 0) {
         res.render('category_delete', {
-          title: 'delete Category',
+          title: 'Delete Category',
           items: results.items,
           category: results.category,
         });

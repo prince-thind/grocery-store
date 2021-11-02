@@ -1,20 +1,25 @@
 <%-include('header')%>
-    <div class="category-name">
-        Category: <%=category.name%>
-            description: <%=category.description%>
-    </div>
-    <p>here's a list of items this category has:</p>
-    <ul>
+    <h2>
+         <%=category.name%>
+    </h2>
+      <p>
+          <%=category.description%>
+      </p>
+        
+    <div>Items in this category:</div>
+    <ul class="display-list">
         <% for (const item of items) {%>
-            <li>
+            <li class="display-list-item">
                 <a href="<%=item.url%>">
                     <%=item.name%>
-                </a> , <%=item.description%>
+                </a>
+                <div>Description: <%=item.description%></div>
+                
             </li>
             <% } %>
     </ul>
-    <div><a href=<%=category.url+'/update'%>> Update</a> </div>
+    <div class="update-button button"><a href=<%=category.url+'/update'%>> Update</a> </div>
 
-    <div><a href=<%=category.url+'/delete'%>> Delete</a></div>
+    <div class="delete-button button"><a href=<%=category.url+'/delete'%>> Delete</a></div>
 
     <%-include('footer')%>

@@ -1,18 +1,19 @@
 <%-include('header') %>
     <% if(locals.items==undefined) {%>
-        <p>do you want to delete the '<%= category.name %>' category?</p>
+        <p>Do you want to delete the '<%= category.name %>' category?</p>
         <form method="post">
             <input type="hidden" value="<%=category.id %>" name='categoryid'>
-            <button>delete</button>
+            <button class="delete-button button">Delete</button>
         </form>
         <% } else{%>
-            please delete the following items first:
-            <ul>
+           <p>Please delete the following items first:</p> 
+            <ul class="display-list">
                 <% for (const item of items) {%>
-                    <li>
+                    <li class="display-list-item">
                         <a href="<%=item.url%>">
                             <%=item.name%>
-                        </a> , <%=item.description%>
+                        </a>
+                        
                     </li>
                     <% } %>
             </ul>
