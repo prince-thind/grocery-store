@@ -10,12 +10,12 @@
             <input id="item_price" type="number" value="<%=item.price %>" name="item_price">
             <div class="radio-buttons">
                 <label for="item_instock_true">True</label>
-                <input id="item_instock_true" type="radio" value="true" name="item_instock" <%=item.checked?'checked':''
+                <input id="item_instock_true" type="radio" value="true" name="item_instock" <%=item.inStock?'checked':''
                     %>
                 >
                 <label for="item_instock_false">False</label>
                 <input id="item_instock_false" type="radio" value="false" name="item_instock"
-                    <%=item.checked?'':'checked' %>>
+                    <%=item.inStock?'':'checked' %>>
             </div>
             <select name="item_category" class="form-select">
                 <% for(const category of categories){ %>

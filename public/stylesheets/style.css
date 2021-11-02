@@ -54,6 +54,7 @@
   margin-bottom: 0.5rem;
   width: 4rem;
   color: white;
+  display: block;
 }
 .button:hover {
   cursor: pointer;

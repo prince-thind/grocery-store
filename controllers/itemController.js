@@ -73,7 +73,7 @@ exports.item_create_post = [
             name: req.body.item_name,
             description: req.body.item_description,
             price: req.body.item_price,
-            instock: req.body.item_instock,
+            inStock: req.body.item_instock==='true'?true:false,
             category: req.body.item_category,
           },
         });
@@ -83,7 +83,7 @@ exports.item_create_post = [
         name: req.body.item_name,
         description: req.body.item_description,
         price: req.body.item_price,
-        instock: req.body.item_instock,
+        inStock: req.body.item_instock==='true'?true:false,
         category: req.body.item_category,
       });
       item.save((err) => {
@@ -157,7 +157,7 @@ exports.item_update_post =[
             name: req.body.item_name,
             description: req.body.item_description,
             price: req.body.item_price,
-            instock: req.body.item_instock,
+            inStock: req.body.item_instock==='true'?true:false,
             category: req.body.item_category,
           },
         });
@@ -167,7 +167,7 @@ exports.item_update_post =[
         name: req.body.item_name,
         description: req.body.item_description,
         price: req.body.item_price,
-        instock: req.body.item_instock,
+        inStock: req.body.item_instock==='true'?true:false,
         category: req.body.item_category,
         _id:req.params.id,
       });

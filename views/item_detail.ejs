@@ -11,8 +11,8 @@
             <li class="display-list-item"> Category: <a href="<%=item.category.url %> "><%=item.category.name %> </a></li>
         </ul>
     
-    <div class="update-button button"><a href=<%=item.url+'/update'%>> Update</a> </div>
+    <div ><a class="update-button button" href=<%=item.url+'/update'%>> Update</a> </div>
 
-    <div class="delete-button button"><a href=<%=item.url+'/delete'%>> Delete</a></div>
+    <div ><a class="delete-button button" href=<%=item.url+'/delete'%>> Delete</a></div>
 
     <%-include('footer')%>
